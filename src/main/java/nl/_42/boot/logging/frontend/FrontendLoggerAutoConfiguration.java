@@ -13,4 +13,9 @@ public class FrontendLoggerAutoConfiguration {
     return new FrontendLogger();
   }
 
+  @Bean
+  public FrontendLoggerController frontendLoggerController(FrontendLogger frontendLogger) {
+    return new FrontendLoggerController(frontendLogger);
+  }
+
 }
