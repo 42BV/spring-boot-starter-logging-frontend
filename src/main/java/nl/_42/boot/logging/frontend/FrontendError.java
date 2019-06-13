@@ -26,13 +26,13 @@ public class FrontendError {
      * to detect which browser on which OS triggered
      * the error.
      */
-    @Size(max = 128)
+    @Size(max = 512)
     private String userAgent;
 
     /**
      * The JavaScript Stackstrace of the error differs per browser
      */
-    @Size(max = 512)
+    @Size(max = 4096)
     private String stack;
 
 }
