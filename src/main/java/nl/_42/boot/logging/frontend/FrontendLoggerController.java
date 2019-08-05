@@ -2,7 +2,6 @@ package nl._42.boot.logging.frontend;
 
 import static org.springframework.http.HttpStatus.NO_CONTENT;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +19,7 @@ public class FrontendLoggerController {
 
     @PostMapping("/error")
     @ResponseStatus(NO_CONTENT)
-    public void error(@Valid @RequestBody FrontendError error, HttpServletResponse response) {
+    public void error(@Valid @RequestBody FrontendError error) {
         logger.error(error);
     }
 

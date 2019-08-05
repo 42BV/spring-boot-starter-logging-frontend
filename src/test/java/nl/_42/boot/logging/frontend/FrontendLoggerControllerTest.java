@@ -66,7 +66,7 @@ public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
         frontendError.setMessage("Big error in little China");
         frontendError.setUrl("https://www.42.nl");
         frontendError.setStack("Le big trace du stack");
-        frontendError.setUserAgent(StringUtils.repeat("a", 513));
+        frontendError.setUserAgent(StringUtils.repeat("a", 1025));
 
         webClient.perform(post("/log/error").content(objectMapper.writeValueAsString(frontendError)))
           .andExpect(status().is4xxClientError());
