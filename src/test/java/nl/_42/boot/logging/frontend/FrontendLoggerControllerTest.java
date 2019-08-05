@@ -1,19 +1,21 @@
 package nl._42.boot.logging.frontend;
 
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
 
@@ -43,7 +45,7 @@ public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
         frontendError.setUserAgent("Chrome on mac os");
 
         webClient.perform(post("/log/error").content(objectMapper.writeValueAsString(frontendError)))
-          .andExpect(status().isOk());
+          .andExpect(status().isNoContent());
 
         assertEquals(1, frontEndLoggerAppender.list.size());
 
@@ -64,7 +66,7 @@ public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
         frontendError.setMessage("Big error in little China");
         frontendError.setUrl("https://www.42.nl");
         frontendError.setStack("Le big trace du stack");
-        frontendError.setUserAgent(StringUtils.repeat("a", 129));
+        frontendError.setUserAgent(StringUtils.repeat("a", 1025));
 
         webClient.perform(post("/log/error").content(objectMapper.writeValueAsString(frontendError)))
           .andExpect(status().is4xxClientError());
