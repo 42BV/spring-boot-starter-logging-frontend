@@ -1,21 +1,19 @@
 package nl._42.boot.logging.frontend;
 
-import static org.junit.Assert.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.junit.Assert.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
 
@@ -52,10 +50,10 @@ public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
         ILoggingEvent loggedEvent = frontEndLoggerAppender.list.get(0);
         assertEquals(Level.ERROR, loggedEvent.getLevel());
 
-        String expectedMessage = "Big error in little China\n"
-          + "URL: https://www.42.nl\n"
-          + "userAgent: Chrome on mac os\n"
-          + "Stack: Le big trace du stack";
+        String expectedMessage = "Big error in little China"
+          + ", URL: https://www.42.nl"
+          + ", UserAgent: Chrome on mac os"
+          + ", Stack: Le big trace du stack";
 
         assertEquals(expectedMessage, loggedEvent.getMessage());
     }
