@@ -17,7 +17,7 @@ public class FrontendLogger {
     }
 
     public void error(FrontendError error) {
-        if (log.isErrorEnabled()) {
+        if (log.isWarnEnabled()) {
             String message = format(
                 "%s, URL: %s, UserAgent: %s, Stack: %s",
                 error.getMessage(),
@@ -27,7 +27,7 @@ public class FrontendLogger {
             );
 
             String formatted = replaceControlCharacters(message);
-            log.error(formatted);
+            log.warn(formatted);
         }
     }
 

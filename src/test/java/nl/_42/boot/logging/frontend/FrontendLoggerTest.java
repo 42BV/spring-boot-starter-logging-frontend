@@ -23,14 +23,14 @@ public class FrontendLoggerTest {
 
     @Test
     public void log_shouldSkipControlCharacters() {
-        Mockito.when(delegate.isErrorEnabled()).thenReturn(true);
+        Mockito.when(delegate.isWarnEnabled()).thenReturn(true);
 
         FrontendError error = new FrontendError();
         error.setMessage("Lorem ipsum dolor sit amet, consectetuer adipiscing elit.\t Aenean commodo ligula eget dolor. Aenean massa.");
 
         logger.error(error);
 
-        Mockito.verify(delegate).error(
+        Mockito.verify(delegate).warn(
             "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa." +
             ", URL: null" +
             ", UserAgent: null" +

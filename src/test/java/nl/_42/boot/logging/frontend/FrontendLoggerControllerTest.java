@@ -48,7 +48,7 @@ public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
         assertEquals(1, frontEndLoggerAppender.list.size());
 
         ILoggingEvent loggedEvent = frontEndLoggerAppender.list.get(0);
-        assertEquals(Level.ERROR, loggedEvent.getLevel());
+        assertEquals(Level.WARN, loggedEvent.getLevel());
 
         String expectedMessage = "Big error in little China"
           + ", URL: https://www.42.nl"
