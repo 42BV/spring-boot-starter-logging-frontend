@@ -1,6 +1,7 @@
 package nl._42.boot.logging.frontend;
 
 import lombok.AllArgsConstructor;
+import nl._42.boot.logging.frontend.limiter.Limiter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -11,13 +12,18 @@ import static java.lang.String.format;
 public class FrontendLogger {
 
     private final Logger log;
+    private final Limiter limiter;
 
-    public FrontendLogger() {
-        this(LoggerFactory.getLogger(FrontendLogger.class));
+    public FrontendLogger(Limiter limiter) {
+        this(LoggerFactory.getLogger(FrontendLogger.class), limiter);
     }
 
+    /**
+     * Write a frontend error to the logger.
+     * @param error the error message
+     */
     public void error(FrontendError error) {
-        if (log.isWarnEnabled()) {
+        if (log.isWarnEnabled() && limiter.obtain()) {
             String message = format(
                 "%s, URL: %s, UserAgent: %s, Stack: %s",
                 error.getMessage(),
