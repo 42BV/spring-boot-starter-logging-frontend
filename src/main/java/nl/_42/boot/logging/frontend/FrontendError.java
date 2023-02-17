@@ -1,7 +1,6 @@
 package nl._42.boot.logging.frontend;
 
-import javax.validation.constraints.Size;
-
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 

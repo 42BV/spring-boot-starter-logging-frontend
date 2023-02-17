@@ -7,11 +7,11 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,7 +22,7 @@ public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
     private Logger frontEndLogger;
     private ListAppender<ILoggingEvent> frontEndLoggerAppender;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
         frontEndLogger = context.getLogger(LoggerFactory.getLogger(FrontendLogger.class).getName());
