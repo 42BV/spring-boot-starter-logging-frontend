@@ -11,7 +11,7 @@
 
     <groupId>nl.42</groupId>
     <artifactId>spring-boot-starter-logging-frontend</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <name>Spring Boot Starter Frontend Logging</name>
@@ -38,7 +38,7 @@
         <connection>scm:git:git@github.com:42BV/spring-boot-starter-logging-frontend.git</connection>
         <developerConnection>scm:git:git@github.com:42BV/spring-boot-starter-logging-frontend.git</developerConnection>
         <url>https://github.com/42BV/spring-boot-starter-logging-frontend</url>
-        <tag>HEAD</tag>
+        <tag>2.0.0</tag>
     </scm>
 
     <properties>
