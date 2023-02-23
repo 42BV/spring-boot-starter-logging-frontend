@@ -1,11 +1,9 @@
 package nl._42.boot.logging.frontend;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -14,7 +12,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public abstract class AbstractWebIntegrationTest {
 
     @Autowired
@@ -25,7 +22,7 @@ public abstract class AbstractWebIntegrationTest {
 
     protected MockMvc webClient;
 
-    @Before
+    @BeforeEach
     public void setUpMockMvc() {
         webClient = webAppContextSetup(applicationContext)
             .defaultRequest(get("/").contentType(APPLICATION_JSON))

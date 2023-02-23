@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Slf4j
 @Configuration
+@ComponentScan(basePackageClasses = FrontendLoggerAutoConfiguration.class)
 @ConditionalOnProperty(value = "logging.frontend.enabled", havingValue = "true", matchIfMissing = true)
 public class FrontendLoggerAutoConfiguration {
 
@@ -29,11 +31,6 @@ public class FrontendLoggerAutoConfiguration {
       limiter = new Timed(limit);
     }
     return limiter;
-  }
-
-  @Bean
-  public FrontendLoggerController frontendLoggerController(FrontendLogger frontendLogger) {
-    return new FrontendLoggerController(frontendLogger);
   }
 
 }

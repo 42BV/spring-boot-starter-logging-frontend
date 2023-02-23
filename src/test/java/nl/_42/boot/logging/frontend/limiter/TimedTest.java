@@ -1,6 +1,6 @@
 package nl._42.boot.logging.frontend.limiter;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

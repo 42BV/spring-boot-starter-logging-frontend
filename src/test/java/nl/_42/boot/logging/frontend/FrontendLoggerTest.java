@@ -1,29 +1,25 @@
 package nl._42.boot.logging.frontend;
 
 import nl._42.boot.logging.frontend.limiter.Limiter;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
 import org.slf4j.Logger;
 
-@RunWith(MockitoJUnitRunner.class)
 public class FrontendLoggerTest {
 
     private FrontendLogger logger;
 
-    @Mock
     private Logger delegate;
 
-    @Mock
     private Limiter limiter;
 
     private FrontendError error;
 
-    @Before
+    @BeforeEach
     public void setUp() {
+        delegate = Mockito.mock(Logger.class);
+        limiter = Mockito.mock(Limiter.class);
         logger = new FrontendLogger(delegate, limiter);
 
         error = new FrontendError();
