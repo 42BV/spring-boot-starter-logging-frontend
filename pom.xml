@@ -118,7 +118,7 @@
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
-                <version>12.1.3</version>
+                <version>${dependency-check-maven-plugin.version}</version>
                 <configuration>
                     <failBuildOnCVSS>0</failBuildOnCVSS>
                     <skipProvidedScope>true</skipProvidedScope>
