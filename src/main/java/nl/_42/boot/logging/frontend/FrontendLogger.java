@@ -1,12 +1,13 @@
 package nl._42.boot.logging.frontend;
 
+import static java.lang.String.format;
+
 import lombok.AllArgsConstructor;
 import nl._42.boot.logging.frontend.limiter.Limiter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
-
-import static java.lang.String.format;
+import org.springframework.util.ObjectUtils;
 
 @AllArgsConstructor
 public class FrontendLogger {
@@ -46,7 +47,7 @@ public class FrontendLogger {
      * @return The text without control characters or null or empty.
      */
     private String replaceControlCharacters(String text) {
-        if (StringUtils.isEmpty(text)) {
+        if (ObjectUtils.isEmpty(text)) {
             return text;
         }
 

@@ -1,37 +1,35 @@
 package nl._42.boot.logging.frontend;
 
+import static ch.qos.logback.classic.Level.TRACE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 public class FrontendLoggerControllerTest extends AbstractWebIntegrationTest {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
-
-    private Logger frontEndLogger;
     private ListAppender<ILoggingEvent> frontEndLoggerAppender;
 
     @BeforeEach
     public void setUp() {
         LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
-        frontEndLogger = context.getLogger(LoggerFactory.getLogger(FrontendLogger.class).getName());
+        Logger frontEndLogger = context.getLogger(LoggerFactory.getLogger(FrontendLogger.class).getName());
 
         frontEndLoggerAppender = new ListAppender<>();
         frontEndLoggerAppender.start();
         frontEndLogger.addAppender(frontEndLoggerAppender);
 
-        frontEndLogger.setLevel(Level.ALL);
+        frontEndLogger.setLevel(TRACE);
     }
 
     @Test

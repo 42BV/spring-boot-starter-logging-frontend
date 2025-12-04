@@ -4,15 +4,16 @@ import lombok.extern.slf4j.Slf4j;
 import nl._42.boot.logging.frontend.limiter.Always;
 import nl._42.boot.logging.frontend.limiter.Limiter;
 import nl._42.boot.logging.frontend.limiter.Timed;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-@Configuration
+@AutoConfiguration
 @ComponentScan(basePackageClasses = FrontendLoggerAutoConfiguration.class)
 @ConditionalOnProperty(value = "logging.frontend.enabled", havingValue = "true", matchIfMissing = true)
 public class FrontendLoggerAutoConfiguration {
